@@ -2,7 +2,7 @@
 
 **DecodeLabs Industrial Training Kit | Data Analytics | Batch 2026**
 
-Author: _add your name here_
+Author:Swathi Satish Bhat
 
 ## Overview
 SQL analysis of an e-commerce orders dataset (1,200 orders, 1,189 customers, 2023-01-01 to 2025-06-30).
