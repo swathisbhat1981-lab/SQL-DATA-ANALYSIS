@@ -1,6 +1,6 @@
 # Project 3: SQL Data Analysis
 
-**DecodeLabs Industrial Training Kit | Data Analytics | Batch 2026**
+
 
 Author:Swathi Satish Bhat
 
