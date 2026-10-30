@@ -70,9 +70,8 @@ GROUP BY OrderID
 HAVING COUNT(*) > 1;
 
 
--- =====================================================================
+
 -- SECTION 2: WHERE FILTERING
--- =====================================================================
 
 -- 2.1  Equality filter
 -- Question : List all delivered orders.
