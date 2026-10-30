@@ -1,34 +1,7 @@
--- =====================================================================
--- DecodeLabs | Data Analytics | Project 3: SQL Data Analysis
--- Dataset : cleaned_dataset.xlsx  ->  table `orders` (1,200 rows, 14 columns)
--- Dialect : SQLite (runs as-is in DB Browser for SQLite)
---
--- Porting notes
---   MySQL      : strftime('%Y', Date)    -> DATE_FORMAT(Date, '%Y')   (or YEAR(Date))
---                strftime('%Y-%m', Date) -> DATE_FORMAT(Date, '%Y-%m')
---   PostgreSQL : strftime('%Y', Date)    -> TO_CHAR(Date::date, 'YYYY')
---                strftime('%Y-%m', Date) -> TO_CHAR(Date::date, 'YYYY-MM')
---   SQL Server : LIMIT n                 -> SELECT TOP n ...
---   Everything else (SELECT / WHERE / GROUP BY / HAVING / ORDER BY /
---   COUNT / SUM / AVG / CASE / IN / BETWEEN / LIKE) is standard SQL.
---
--- Requirement map (from the project PDF)
---   Write SELECT queries ............ Section 1
---   WHERE ........................... Section 2
---   ORDER BY ........................ Section 3
---   COUNT / SUM / AVG ............... Section 4 and 5
---   GROUP BY ........................ Section 5
---   HAVING (PDF conclusion tip) ..... Section 6
---   % contribution (PDF tip) ........ Query 7.1
--- =====================================================================
 
--- ---------------------------------------------------------------------
--- STEP 0 : Create the table (safe to run: does nothing if `orders` already exists,
---           e.g. when you opened orders.db)
--- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS orders (
     OrderID         TEXT PRIMARY KEY,
-    Date            TEXT NOT NULL,      -- stored as 'YYYY-MM-DD'
+    Date            TEXT NOT NULL,     
     CustomerID      TEXT NOT NULL,
     Product         TEXT NOT NULL,
     Quantity        INTEGER NOT NULL,
