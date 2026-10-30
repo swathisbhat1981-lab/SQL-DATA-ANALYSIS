@@ -20,10 +20,7 @@ CREATE TABLE IF NOT EXISTS orders (
 -- into `orders` (DB Browser: File > Import > Table from CSV file;
 -- MySQL Workbench: Table Data Import Wizard; pgAdmin: right-click > Import/Export).
 
-
--- =====================================================================
 -- SECTION 1: SELECT BASICS
--- =====================================================================
 
 -- 1.1  Preview the table
 -- Question : What does the raw data look like?
@@ -124,11 +121,7 @@ WHERE OrderStatus = 'Cancelled'
    OR OrderStatus = 'Returned'
 ORDER BY TotalPrice DESC;
 
-
--- =====================================================================
 -- SECTION 3: ORDER BY SORTING
--- =====================================================================
-
 -- 3.1  Top 10 orders by value
 -- Question : What are our 10 biggest orders?
 -- Skills   : ORDER BY DESC, LIMIT
@@ -182,9 +175,7 @@ SELECT COUNT(*)            AS all_rows,
 FROM orders;
 
 
--- =====================================================================
 -- SECTION 5: GROUP BY
--- =====================================================================
 
 -- 5.1  Orders by status
 -- Question : How many orders are in each status?
@@ -310,9 +301,8 @@ HAVING AVG(TotalPrice) > 1000
 ORDER BY avg_order_value DESC;
 
 
--- =====================================================================
+
 -- SECTION 7: BUSINESS INSIGHTS
--- =====================================================================
 
 -- 7.1  Percentage contribution by product
 -- Question : What share of total revenue does each product contribute? (PDF conclusion suggests this)
