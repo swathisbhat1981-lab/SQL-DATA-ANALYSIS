@@ -326,3 +326,47 @@ SELECT Product,
 FROM orders
 GROUP BY Product
 ORDER BY lost_order_pct DESC;
+
+-- 7.3  Gross vs net revenue by product
+-- Question : How much revenue is at risk? Net = orders that are NOT Cancelled or Returned.
+-- Skills   : GROUP BY, conditional SUM, CASE WHEN
+SELECT Product,
+       ROUND(SUM(TotalPrice), 2) AS gross_revenue,
+       ROUND(SUM(CASE WHEN OrderStatus NOT IN ('Cancelled','Returned')
+                      THEN TotalPrice ELSE 0 END), 2) AS net_revenue,
+       ROUND(SUM(CASE WHEN OrderStatus IN ('Cancelled','Returned')
+                      THEN TotalPrice ELSE 0 END), 2) AS revenue_lost
+FROM orders
+GROUP BY Product
+ORDER BY net_revenue DESC;
+
+-- 7.4  Top 3 referral sources by delivered revenue
+-- Question : Which 3 marketing channels deliver the most completed (Delivered) revenue?
+-- Skills   : WHERE, GROUP BY, SUM, ORDER BY, LIMIT
+SELECT ReferralSource,
+       COUNT(*)                   AS delivered_orders,
+       ROUND(SUM(TotalPrice), 2)  AS delivered_revenue
+FROM orders
+WHERE OrderStatus = 'Delivered'
+GROUP BY ReferralSource
+ORDER BY delivered_revenue DESC
+LIMIT 3;
+
+-- 7.5  The 'Alias Trap' done correctly (PDF slide 12)
+-- Question : Filter on a computed value. Using the alias in WHERE fails because WHERE runs before SELECT; wrap it in a subquery instead.
+-- Skills   : Execution order, alias, subquery
+-- WRONG in MySQL / PostgreSQL / SQL Server (error: column "rev" does not exist),
+-- because WHERE runs before SELECT. (SQLite is lenient and allows it, so don't rely on that.)
+--   SELECT Quantity * UnitPrice AS rev FROM orders WHERE rev > 3000;
+
+-- RIGHT option A: repeat the expression inside WHERE
+--   SELECT Quantity * UnitPrice AS rev FROM orders WHERE Quantity * UnitPrice > 3000;
+
+-- RIGHT option B (used below): compute the alias in a subquery, filter it in the outer query
+SELECT *
+FROM (
+    SELECT OrderID, Product, Quantity * UnitPrice AS rev
+    FROM orders
+) AS t
+WHERE rev > 3000
+ORDER BY rev DESC;
