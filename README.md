@@ -38,3 +38,11 @@ For MySQL / PostgreSQL, import the data into a table named `orders` and replace 
 - **Trend:** Yearly revenue: 2023 = 552,643.24, 2024 = 480,235.87, 2025 = 231,882.85. 2025 only covers Jan-Jun, so compare like-for-like: H1 2023 = 286,501.52, H1 2024 = 257,059.34, H1 2025 = 231,882.85. (5.6, 5.7)
 - **Customers:** Only 11 customers appear more than once (all with exactly 2 orders), so repeat purchasing is very low. (6.1)
 - **Data quality:** No duplicate OrderIDs, no NULLs in any checked column, and TotalPrice equals Quantity x UnitPrice on every row. (1.4, 1.5, 4.2)
+
+## Requirement coverage
+| Requirement | Queries |
+|---|---|
+| SELECT | Section 1 |
+| WHERE, ORDER BY | Sections 2 and 3 |
+| COUNT, SUM, AVG, GROUP BY | Sections 4 and 5 |
+| HAVING, percentage contribution | Section 6, query 7.1 |
